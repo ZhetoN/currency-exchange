@@ -1,0 +1,7 @@
+@import '../overlay-input/overlay-input.component.scss';
+
+:host {
+  input {
+    cursor: pointer;
+  }
+}

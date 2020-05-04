@@ -16,8 +16,16 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@currency-exchange/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@currency-exchange/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@currency-exchange/ui": ["libs/ui/src/index.ts"]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp",
+    "dist",
+    "**/*.spec.ts",
+    "**/test-setup.ts",
+    "**/environment.prod.ts"
+  ]
 }

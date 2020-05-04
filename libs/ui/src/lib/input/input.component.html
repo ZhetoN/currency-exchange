@@ -1,0 +1,13 @@
+<currency-exchange-form-field [label]="label" [uid]="uid">
+  <input #input
+    [attr.id]="uid"
+    [formControl]="control"
+    [attr.spellcheck]="spellcheck"
+    [attr.autocomplete]="autocomplete"
+    [attr.readOnly]="readonly"
+    (focusin)="focusChanged(true)"
+    (focusout)="focusChanged(false)" />
+</currency-exchange-form-field>
+<div class="form-error">
+  <ng-content></ng-content>
+</div>

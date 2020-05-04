@@ -1,0 +1,27 @@
+<currency-exchange-form-field [label]="label" [uid]="uid">
+  <input #input
+    autocomplete="off"
+    [attr.id]="uid"
+    [formControl]="control"
+    [attr.spellcheck]="spellcheck"
+    (focusin)="focusChanged(true)"
+    (focusout)="focusChanged(false)"/>
+</currency-exchange-form-field>
+
+<ng-template cdkPortal>
+  <cdk-virtual-scroll-viewport
+    class="cdk-portal-container"
+    (mousedown)="$event.preventDefault()"
+    [style.height.px]="overlayHeight$ | async"
+    [style.width.px]="overlayWidth$ | async"
+    [minBufferPx]="250"
+    [maxBufferPx]="350"
+    [itemSize]="itemSize">
+    <div class="currency-exchange-select-option"
+         *cdkVirtualFor="let option of options; trackBy: trackByIdx"
+         [style.height.px]="itemSize"
+         (click)="onSelect(option)"
+         [innerHTML]="displayWith(option)">
+    </div>
+  </cdk-virtual-scroll-viewport>
+</ng-template>

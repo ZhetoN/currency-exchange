@@ -6,6 +6,11 @@
       "schematics": {
         "@nrwl/angular:component": {
           "style": "scss"
+        },
+        "@schematics/angular": {
+          "component": {
+            "changeDetection": "OnPush"
+          }
         }
       },
       "root": "apps/converter",
@@ -26,7 +31,11 @@
               "apps/converter/src/assets"
             ],
             "styles": ["apps/converter/src/styles.scss"],
-            "scripts": []
+            "scripts": [
+              {
+                "input": "node_modules/document-register-element/build/document-register-element.js"
+              }
+            ]
           },
           "configurations": {
             "production": {
@@ -37,9 +46,9 @@
                 }
               ],
               "optimization": true,
-              "outputHashing": "all",
+              "outputHashing": "none",
               "sourceMap": false,
-              "extractCss": true,
+              "extractCss": false,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -62,6 +71,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
+            "aot": true,
             "browserTarget": "converter:build",
             "proxyConfig": "apps/converter/proxy.conf.json"
           },
@@ -144,6 +154,7 @@
             "production": {
               "optimization": true,
               "extractLicenses": true,
+              "sourceMap": false,
               "inspect": false,
               "fileReplacements": [
                 {
@@ -203,6 +214,38 @@
             "tsConfig": "libs/api-interfaces/tsconfig.spec.json",
             "passWithNoTests": true
           }
+        }
+      }
+    },
+    "ui": {
+      "projectType": "library",
+      "root": "libs/ui",
+      "sourceRoot": "libs/ui/src",
+      "prefix": "currency-exchange",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ui/tsconfig.lib.json",
+              "libs/ui/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ui/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ui/jest.config.js",
+            "tsConfig": "libs/ui/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/ui/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
         }
       }
     }

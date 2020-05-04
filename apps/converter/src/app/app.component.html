@@ -1,8 +1,27 @@
 <div style="text-align:center">
   <h1>Welcome to converter!</h1>
-  <img
-    width="450"
-    src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png"
-  />
 </div>
-<div>Message: {{ hello$ | async | json }}</div>
+<form [formGroup]="form">
+  <currency-exchange-input
+    label="From"
+    autocomplete="off"
+    [spellcheck]="false"
+    [formControl]="form.controls.from"
+  ></currency-exchange-input>
+  <currency-exchange-select
+    [options]="(currencies$ | async)!"
+    [displayWith]="displayWith"
+  ></currency-exchange-select>
+
+  <currency-exchange-input
+    label="To"
+    autocomplete="off"
+    [spellcheck]="false"
+    [formControl]="form.controls.to"
+    [readonly]="true"
+  ></currency-exchange-input>
+  <currency-exchange-autocomplete
+    [options]="(currencies$ | async)!"
+    [displayWith]="displayWith"
+  ></currency-exchange-autocomplete>
+</form>

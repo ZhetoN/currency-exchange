@@ -1,0 +1,7 @@
+<label [attr.for]="uid" *ngIf="label" class="label-text">
+  {{label}}
+</label>
+<slot>
+  <ng-content></ng-content>
+</slot>
+<span class="underline"></span>

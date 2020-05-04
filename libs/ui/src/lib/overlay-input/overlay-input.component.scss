@@ -1,0 +1,13 @@
+@import '../../styles';
+
+.currency-exchange-select-option {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0 1em;
+  box-sizing: border-box;
+
+  &:hover {
+    background-color: #d4d4d4;
+  }
+}
