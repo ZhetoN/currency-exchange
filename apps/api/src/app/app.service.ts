@@ -18,7 +18,7 @@ export class AppService {
   constructor(private http: HttpService) {
   }
 
-  getRates(base = 'EUR'): Observable<LatestRates> {
+  getRates(base = 'USD'): Observable<LatestRates> {
     const params: LatestRatesQueryParams = {
       app_id: 'd12f071236614a5db99ed40a3803cdb8',
       base,

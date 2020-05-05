@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, Injector } from '@angular/core';
+import { NgModule, Injector, InjectionToken } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { UiModule } from '@currency-exchange/ui';
 import { AppComponent } from './app.component';
+import { DEFAULT_BASE_CURRENCY_CODE } from './default-currency';
 
 @NgModule({
   imports: [
@@ -17,7 +18,12 @@ import { AppComponent } from './app.component';
   declarations: [
     AppComponent,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: DEFAULT_BASE_CURRENCY_CODE,
+      useValue: 'USD'
+    }
+  ],
   bootstrap: [
   ],
   entryComponents: [

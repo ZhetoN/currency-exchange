@@ -4,8 +4,8 @@ import { AppService } from './app.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { SafeHtml } from '@angular/platform-browser';
 import { Currency } from '@currency-exchange/api-interfaces';
-import { map, tap, filter, takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { map, tap, filter, takeUntil, shareReplay, skipUntil, distinctUntilChanged } from 'rxjs/operators';
+import { Subject, combineLatest } from 'rxjs';
 
 @Component({
   selector: 'currency-exchange',
@@ -21,10 +21,23 @@ export class AppComponent implements OnDestroy {
   destroy$ = new Subject<void>();
 
   form = new FormGroup({
-    amount: new FormControl(110),
+    amount: new FormControl(),
     from: new FormControl(),
     to: new FormControl()
   }) as FormGroupTyped<{ amount: number, from: Currency, to: Currency }>;
+
+  converted$ = combineLatest([
+    this.form.controls.amount.valueChanges.pipe(
+      distinctUntilChanged(),
+    ),
+    this.appService.rates$,
+    this.appService.baseCurrencyCode$,
+  ])
+  .pipe(
+    map(([amount, rates, code]) => {
+      return amount;
+    }),
+  );
 
   constructor(private appService: AppService) {
     this.currencies$
@@ -37,6 +50,15 @@ export class AppComponent implements OnDestroy {
           this.form.controls.from.setValue(val);
         }
       });
+
+    this.form.controls.from.valueChanges.pipe(
+      distinctUntilChanged((prev, curr) => prev.code === curr.code),
+      takeUntil(this.destroy$),
+    ).subscribe(currency => {
+      if (currency) {
+        this.appService.setBaseCurrency(currency);
+      }
+    });
   }
 
   ngOnDestroy(): void {
