@@ -32,7 +32,11 @@ export class AppComponent implements OnDestroy {
         map(val => val.find(currency => currency.code === 'USD')),
         takeUntil(this.destroy$),
       )
-      .subscribe(val => this.form.controls.from.setValue(val));
+      .subscribe(val => {
+        if (val) {
+          this.form.controls.from.setValue(val);
+        }
+      });
   }
 
   ngOnDestroy(): void {
