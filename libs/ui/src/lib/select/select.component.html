@@ -13,7 +13,7 @@
 </div>
 
 <ng-template cdkPortal>
-  <cdk-virtual-scroll-viewport class="cdk-portal-container"
+  <cdk-virtual-scroll-viewport class="cdk-portal-container" #sucker
     (mousedown)="$event.preventDefault()"
     [style.height.px]="overlayHeight$ | async"
     [style.width.px]="overlayWidth$ | async"
@@ -21,10 +21,11 @@
     [maxBufferPx]="350"
     [itemSize]="itemSize">
     <div class="currency-exchange-select-option"
-         *cdkVirtualFor="let option of options; trackBy: trackByIdx"
-         [style.height.px]="itemSize"
-         (click)="select(option)"
-         [innerHTML]="displayWith(option)">
+      *cdkVirtualFor="let option of options; trackBy: trackByIdx"
+      [class.selected]="isSelected(option)"
+      [style.height.px]="itemSize"
+      (click)="select(option)"
+      [innerHTML]="displayWith(option)">
     </div>
   </cdk-virtual-scroll-viewport>
 </ng-template>

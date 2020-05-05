@@ -1,6 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+@import '../../../node_modules/@angular/cdk/_overlay.scss';
+
+@include cdk-overlay();
+
 body {
   display: grid;
   justify-items: center;
   align-items: center;
+}
+
+.currency-option {
+  border: 2px solid red;
+}
+.currency-exchange-select-option {
+  align-items: start;
+  flex-direction: column;
+
+  small {
+    color: #666;
+    font-size: 13px;
+  }
 }

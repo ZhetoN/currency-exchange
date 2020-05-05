@@ -18,10 +18,10 @@
     [maxBufferPx]="350"
     [itemSize]="itemSize">
     <div class="currency-exchange-select-option"
-         *cdkVirtualFor="let option of options; trackBy: trackByIdx"
-         [style.height.px]="itemSize"
-         (click)="onSelect(option)"
-         [innerHTML]="displayWith(option)">
+      *cdkVirtualFor="let option of options; trackBy: trackByIdx"
+      [style.height.px]="itemSize"
+      (click)="onSelect(option)"
+      [innerHTML]="displayWith(option)">
     </div>
   </cdk-virtual-scroll-viewport>
 </ng-template>

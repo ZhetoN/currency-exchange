@@ -10,6 +10,7 @@ import { FormFieldComponent } from './form-field/form-field.component';
 import { OverlayInputComponent } from './overlay-input/overlay-input.component';
 import { SelectComponent } from './select/select.component';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
+import { PipesModule } from './pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { AutocompleteComponent } from './autocomplete/autocomplete.component';
     ReactiveFormsModule,
     ScrollingModule,
     PortalModule,
+    PipesModule,
   ],
   declarations: [
     FormFieldComponent,
@@ -26,6 +28,7 @@ import { AutocompleteComponent } from './autocomplete/autocomplete.component';
     AutocompleteComponent,
   ],
   exports: [
+    PipesModule,
     FormFieldComponent,
     InputComponent,
     SelectComponent,

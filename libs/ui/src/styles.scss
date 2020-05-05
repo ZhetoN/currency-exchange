@@ -1,5 +1,7 @@
 @import '../../../node_modules/@angular/cdk/_overlay.scss';
 
+@include cdk-overlay();
+
 $default-font-family: Roboto, 'Helvetica Neue', sans-serif;
 
 $font-size-base: 16px;

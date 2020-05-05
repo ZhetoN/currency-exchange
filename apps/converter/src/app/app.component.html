@@ -1,27 +1,28 @@
-<div style="text-align:center">
-  <h1>Welcome to converter!</h1>
-</div>
+<header>
+  <div class="title">Currency Conversion Tool</div>
+  <a href="https://openexchangerates.org/">openexchangerates.org</a>
+</header>
 <form [formGroup]="form">
   <currency-exchange-input
-    label="From"
+    label="Amount"
     autocomplete="off"
     [spellcheck]="false"
-    [formControl]="form.controls.from"
+    [formControl]="form.controls.amount"
   ></currency-exchange-input>
   <currency-exchange-select
+    label="Currency From"
+    [formControl]="form.controls.from"
     [options]="(currencies$ | async)!"
     [displayWith]="displayWith"
+    [valueWith]="valueWith"
+    [itemSize]="50"
   ></currency-exchange-select>
-
-  <currency-exchange-input
-    label="To"
-    autocomplete="off"
-    [spellcheck]="false"
-    [formControl]="form.controls.to"
-    [readonly]="true"
-  ></currency-exchange-input>
-  <currency-exchange-autocomplete
+  <currency-exchange-select
+    label="Currency To"
     [options]="(currencies$ | async)!"
     [displayWith]="displayWith"
-  ></currency-exchange-autocomplete>
+    [valueWith]="valueWith"
+    [itemSize]="50"
+  ></currency-exchange-select>
+  {{ form.controls.to.value }}
 </form>

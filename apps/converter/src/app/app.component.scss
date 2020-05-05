@@ -1,10 +1,20 @@
 :host {
   max-width: 600px;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+header {
+  padding: 20px 0 40px 0;
+}
+
+.title {
+  font-size: 20px;
 }
 
 form {
+  min-width: 300px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-column: 1;
   grid-template-rows: auto;
   grid-gap: 30px 20px;
 }
